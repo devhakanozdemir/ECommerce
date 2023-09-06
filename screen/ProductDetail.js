@@ -3,7 +3,7 @@ import React from 'react'
 
 const ProductDetail = () => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text>ProductDetail</Text>
         </View>
     )
@@ -11,4 +11,10 @@ const ProductDetail = () => {
 
 export default ProductDetail
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})
