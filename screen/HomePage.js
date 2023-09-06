@@ -9,7 +9,7 @@ import axios from 'axios'
 import ListBox from '../components/ListBox'
 
 
-const HomePage = () => {
+const HomePage = ({ navigation }) => {
 
     const [productList, setProductList] = useState([])
 
@@ -19,7 +19,9 @@ const HomePage = () => {
             .then((value) => setProductList(value.data))
     }, [])
 
-
+    const handleNavigation = (value) => {
+        navigation.navigate('ProductDetail', { ProductDatas: value })
+    }
 
 
 
@@ -32,7 +34,8 @@ const HomePage = () => {
                     showsVerticalScrollIndicator={false}
                     data={productList}
                     keyExtractor={(item) => item.id} // If there is no "id" in API data, you can use "index" prop like this => keyExtractor={(item, index) => index}
-                    renderItem={({ item }) => <ListBox ProductInfo={item} />} //rendering outside by using a component(ListBox) with props(ProductInfo)
+                    renderItem={({ item }) => <ListBox handleOnPress={() => handleNavigation(item)} ProductInfo={item} />
+                    } //rendering outside by using a component(ListBox) with props(ProductInfo)
                 />
             </View>
         </View>
@@ -46,12 +49,13 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-around',
+        backgroundColor: "#C4DFDF"
     },
 
     listOfProducts: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: 'tomato'
+        color: 'black'
     },
 
     flatListContainer: {
